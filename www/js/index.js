@@ -132,6 +132,7 @@ var app = {
             $("#loginrow").addClass("hide");
             $("#main1").removeClass("hide");
             $("#main2").removeClass("hide");
+            $("#bcamera").removeClass("hide");
             $("#lusername").text(data.opName);
             $("#lvehname").text(data.vehName);
             this.getroadlist();
@@ -143,6 +144,7 @@ var app = {
         $("#loginrow").removeClass("hide");
         $("#main1").addClass("hide");
         $("#main2").addClass("hide");
+        $("#bcamera").addClass("hide");
     },
     checklogin:function(){
         $.post(app.url,{_action:'checklogin'},function(data){
