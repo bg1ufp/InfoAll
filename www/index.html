@@ -62,9 +62,7 @@
                </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                </ul>
+              
 
               
                <ul class="nav navbar-nav navbar-right">
@@ -126,7 +124,7 @@
     </div>
 
     <div class='row hide' id='main1'>
-    <div class='col-sm-10' >
+    <div class='col-sm-12' >
 
     <div id='jobinfodiv'>
     <div class='panel panel-default ' >
@@ -150,7 +148,7 @@
     </div>
     </div>
 
-    <div id='newjobdiv' class='col-md-12'>
+    <div id='newjobdiv' class='col-sm-12'>
         <div class="panel panel-default" id='logindiv'>
             <div class="panel-body">
                     <div class="form-group">
@@ -172,7 +170,7 @@
     </div>
     </div>
 
-    <div class='col-sm-2 bg-info ' id='gpsinfo'>
+    <div class='col-sm-12 bg-info' id='gpsinfo'>
     <center>
         <h1><span id='gpsspeed'>0.0</span></h1>
         <h5>X:<span id='gpsx'>116.00000</span> 
@@ -189,11 +187,11 @@
 
     <div class='row hide' id='main2'>
     <div class='col-sm-12 table-responsive' id='joblist'>
-    <table class='table table-striped table-bordered'>
+    <table class='table table-bordered table-striped'>
 
-    <thead><tr>
-        <td>编号</td><td>道路名称</td><td>创建时间</td>
-        <td>启动</td><td>完成</td><td>确认</td><td>状态<td>备注</td>
+    <thead><tr class="info">
+        <th>编号</th><th>道路名称</th><th>创建时间</th>
+        <th>启动</th><th>完成</th><th>确认</th><th>状态<th>备注</th>
     </tr></thead>
     <tbody id='jobtable'>
         
@@ -203,15 +201,6 @@
     </div>
     </div>
   </div>
- <!--    <div class="container">
-        <h1>Info All</h1>
-        <div id="" class="blink">
-            <p>Info All is a testapp</p>
-            <p id="testlabel"></p>
-            <a href="#" id="btest">test</a>
-
-        </div> 
-    </div>-->
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap/js/bootstrap.min.js"></script>

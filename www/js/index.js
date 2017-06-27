@@ -59,7 +59,7 @@ var app = {
         $("#blogout").click(function(evt){
             $.post(app.url,{_action:'logout'},function(data){
                 app.applylogout(data);
-                navigator.app.exitApp();
+                //navigator.app.exitApp();
             },'json');
 
         });
@@ -233,7 +233,7 @@ var app = {
         $.each(data,function(k,d){
             info="<tr";
             if(d.state==0){
-                info+=" class='warning' ";
+                info+=" class='success' ";
             }
             info+=">";
             info+="<td>"+d.id

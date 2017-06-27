@@ -116,3 +116,6 @@ h1 {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
 }
+.table {
+    background-color: #ffffff; 
+}
