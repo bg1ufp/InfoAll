@@ -18,7 +18,7 @@
  */
 
 var app = {
-    url:"http://192.168.13.104/public/yklj/",
+    url:"http://192.168.0.106/public/yklj/",
     userlogin:0,
     roadlist:[],
     activejob:{},
@@ -47,6 +47,22 @@ var app = {
         setInterval(app.reloadroadselect,30000);
 
         console.log(device.model);
+
+        $("#bcamera").click(function(evt){
+            navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
+                destinationType: Camera.DestinationType.DATA_URL,targetWidth:720,targetHeight:1280
+            });
+        });
+
+        function onSuccess(imageData) {
+            $.post(app.url,{_action:'sendphoto',photo:imageData},function(data){
+                alert (data.msg);
+            },'json')
+        };
+
+        function onFail(message) {
+            alert('Failed because: ' + message);
+        };
         $("#blogin").click(function(evt){
             app.url="http://"+$("#ihostip").val()+"/public/yklj/";
             console.log(app.url);
