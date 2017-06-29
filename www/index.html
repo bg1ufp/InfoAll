@@ -62,10 +62,7 @@
                </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
-              <ul class="nav navbar-nav">
-                <li><a href="#" id='bcamera' class="hide">拍照</a></li>
-              </ul>
-              
+     
                <ul class="nav navbar-nav navbar-right">
                  <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -124,11 +121,10 @@
     </div>
     </div>
 
-    <div class='row hide' id='main1'>
-    <div class='col-sm-12' >
+    <div class='row hide' id='inforow'>
 
-    <div id='jobinfodiv'>
-    <div class='panel panel-default ' >
+    <div class='col-sm-12'  >
+    <div class='panel panel-default ' id='jobinfodiv' >
         <div class='panel-heading'>
             <h3>当前任务<span id='l_id'></span> <small>  <label id='l_jobdatatime'>08:43:16</label> 工况数据</small></h3>
         </div>
@@ -147,7 +143,8 @@
         </tr>
         </table>
     </div>
-    </div>
+    </div>    
+
 
     <div id='newjobdiv' class='col-sm-12'>
         <div class="panel panel-default" id='logindiv'>
@@ -160,36 +157,40 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group"><center>
-                        <a  class="btn btn-primary disabled btn-lg" id='baddjob'>
-                            <i class="fa fa-btn fa-sign-in"></i>添加任务
-                        </a>
-                        </center>
-                    </div>
             </div>
         </div>
     </div>
-    </div>
 
-    <div class='col-sm-12 bg-info' id='gpsinfo'>
+    </div> <!-- row -->
+    
+    <div class="row hide" id='gpsrow'>
+    
+    <div class="col-xs-3 " >
     <center>
-        <h1><span id='gpsspeed'>0.0</span></h1>
-        <h5>X:<span id='gpsx'>116.00000</span> 
-        Y:<span id='gpsy'>39.00000</span></h5>
-        <p>
-            <a id='bstart' class='btn btn-default btn-lg btn-success hide' href='#'>启动</a>
-            <a id='bfinish' class='btn btn-default btn-lg btn-primary hide' href='#'>完成</a>
-        </p>
-
-    </center>
+     <a id='bcamera' class='btn btn-default btn-lg btn-warning' href='#'><span class="glyphicon glyphicon-camera" ></span></a>
+     </center>
+    </div>
+    <div class='col-xs-6 ' >
+      <center>
+        <h5><span id='gpsspeed'>0.0</span></h5>
+        <span id='gpsx'>116.00000</span>
+         <span id='gpsy'>39.00000</span>
+      </center>
+    </div>
+    <div class="col-xs-3 " >
+        <center>
+        <a id='baddjob' class="btn btn-primary disabled btn-lg hide" href="#"><span class="glyphicon glyphicon-plus" ></span></a>
+        <a id='bstart' class='btn btn-default btn-lg btn-success hide' href='#'><span class="glyphicon glyphicon-play" ></span></a>
+        <a id='bfinish' class='btn btn-default btn-lg btn-primary hide' href='#'><span class="glyphicon glyphicon-stop" ></span></a>
+        </center>
     </div>
 
-    </div>
+    </div> <!-- row -->
 
-    <div class='row hide' id='main2'>
+    <div class='row hide' id='listrow'>
+
     <div class='col-sm-12 table-responsive' id='joblist'>
     <table class='table table-bordered table-striped'>
-
     <thead><tr class="info">
         <th>编号</th><th>道路名称</th><th>创建时间</th>
         <th>启动</th><th>完成</th><th>确认</th><th>状态<th>备注</th>
@@ -198,9 +199,10 @@
         
     </tbody>
     </table>
+    </div>
 
-    </div>
-    </div>
+    </div> <!-- row -->
+
   </div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>

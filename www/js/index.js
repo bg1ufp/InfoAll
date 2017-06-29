@@ -182,9 +182,10 @@ var app = {
         if(data.success){
             this.userlogin=1;
             $("#loginrow").addClass("hide");
-            $("#main1").removeClass("hide");
-            $("#main2").removeClass("hide");
-            $("#bcamera").removeClass("hide");
+            $("#inforow").removeClass("hide");
+            $("#gpsrow").removeClass("hide");
+            $("#listrow").removeClass("hide");
+
             $("#lusername").text(data.opName);
             $("#lvehname").text(data.vehName);
             this.getroadlist();
@@ -194,9 +195,9 @@ var app = {
     applylogout:function(data){
         this.userlogin=0;
         $("#loginrow").removeClass("hide");
-        $("#main1").addClass("hide");
-        $("#main2").addClass("hide");
-        $("#bcamera").addClass("hide");
+        $("#inforow").addClass("hide");
+        $("#gpsrow").addClass("hide");
+        $("#listrow").addClass("hide");
     },
     checklogin:function(){
         $.post(app.url,{_action:'checklogin'},function(data){
@@ -298,7 +299,6 @@ var app = {
         $("#bconfirm").addClass('hide');
         $("#jobinfodiv").addClass('hide');
         $("#newjobdiv").addClass('hide');
-
         $("#jobtable").html("");
         $.each(data,function(k,d){
             info="<tr";
@@ -350,10 +350,12 @@ var app = {
             app.showactive(this.activejob);
             $("#jobinfodiv").removeClass('hide');
             $("#newjobdiv").addClass('hide');
+            $("#baddjob").addClass('hide');
         }
         else{
             $("#jobinfodiv").addClass('hide');
             $("#newjobdiv").removeClass('hide');
+            $("#baddjob").removeClass('hide');
         }
     },
 
