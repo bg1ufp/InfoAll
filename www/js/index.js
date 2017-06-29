@@ -18,12 +18,13 @@
  */
 
 var app = {
-    url:"http://192.168.13.104/public/yklj/",
+    url:"http://192.168.0.106/public/yklj/",
     userlogin:0,
     roadlist:[],
     activejob:{},
     gpsx:0,
     gpsy:0,
+    cfgfile:null,
 
     // Application Constructor
     initialize: function() {
@@ -42,11 +43,25 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         //app.receivedEvent('deviceready');
+        app.showabout();
         app.checklogin();
         setInterval(app.getactivedata,2000);    
         setInterval(app.reloadroadselect,30000);
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
+            console.log('file system open: ' + fs.name);
+            fs.root.getFile("config.txt", { create: true, exclusive: false }, function (fileEntry) {
+                console.log(fileEntry);
+                cfgfile=fileEntry;
+                app.readFile(cfgfile);
+            }, onErrorCreateFile);
 
-        console.log(device.model);
+        }, onErrorLoadFs);
+        function onErrorCreateFile(evt){
+            console.log(evt);
+        }
+        function onErrorLoadFs(evt){
+          console.log(evt);  
+        }
 
         $("#bcamera").click(function(evt){
             navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
@@ -64,10 +79,12 @@ var app = {
             alert('Failed because: ' + message);
         };
         $("#bhome").click(function(evt){
-            alert ("道路检测数据平台测试APP\n Copyright ©2017  bg1ufp@163.com");
+            app.showabout();
         });
         $("#blogin").click(function(evt){
-            app.url="http://"+$("#ihostip").val()+"/public/yklj/";
+            var hostip=$("#ihostip").val();
+            app.writeFile(cfgfile,JSON.stringify({hostip:hostip}));
+            app.url="http://"+hostip+"/public/yklj/";
             console.log(app.url);
             $.post(app.url,{_action:'login',username:$("#iusername").val(),password:$("#ipassword").val()},function(data){
                 app.applylogin(data);
@@ -78,7 +95,6 @@ var app = {
         $("#blogout").click(function(evt){
             $.post(app.url,{_action:'logout'},function(data){
                 app.applylogout(data);
-                //navigator.app.exitApp();
             },'json');
 
         });
@@ -120,13 +136,46 @@ var app = {
             },'json');
         }); 
     },
+    writeFile:function(fileEntry, dataObj) {
+        fileEntry.createWriter(function (fileWriter) {
 
-    getinfo:function(){
-        console.log(this.url);
-        $.post(this.url,{_action:'test'},function(data){
-            console.log(data);
-            $("#testlabel").text(data.msg);
-        },'json')
+            fileWriter.onwriteend = function() {
+                console.log("Successful file write...");
+            };
+
+            fileWriter.onerror = function (e) {
+                console.log("Failed file write: " + e.toString());
+            };
+
+            // If data object is not passed in,
+            // create a new Blob instead.
+            if (!dataObj) {
+                dataObj = new Blob(['some file data'], { type: 'text/plain' });
+            }
+
+            fileWriter.write(dataObj);
+        });
+    },
+    readFile:function(fileEntry) {
+        fileEntry.file(function (file) {
+            var reader = new FileReader();
+            reader.onloadend = function() {
+                console.log("Successful file read: " + this.result);
+                console.log(fileEntry.fullPath + ": " + this.result);
+                var cfg=JSON.parse(this.result);
+                $("#ihostip").val(cfg.hostip);
+                app.url="http://"+cfg.hostip+"/public/yklj/";
+            };
+
+            reader.readAsText(file);
+
+        }, function(evt){
+            console.log(evt);
+        });
+    },
+    showabout:function(){
+            var msg="道路检测数据平台测试APP\n Copyright ©2017  bg1ufp@163.com";
+            navigator.notification.alert(msg, null, "关于", '确定');
     },
 
     applylogin:function(data){
@@ -157,7 +206,7 @@ var app = {
 
     getroadlist:function(){
         $.post(app.url,{_action:'roadlist'},function(data){
-            console.log(data);
+            //console.log(data);
             app.roadlist=data.roadlist;
             app.gpsx=data.gpsx;
             app.gpsy=data.gpsy;
@@ -321,14 +370,5 @@ var app = {
         //var receivedElement = parentElement.querySelector('.received');
         //listeningElement.setAttribute('style', 'display:none;');
         //receivedElement.setAttribute('style', 'display:block;');
-
-        var ltest =$("#testlabel");      
-        ltest.text(device.model);
-
-        $("#btest").click(function(evt){
-            app.getinfo();    
-        })
-        
-        console.log('Received Event: ' + id);
-    }
+     }
 };
