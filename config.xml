@@ -2,10 +2,10 @@
 <widget id="org.bjhks.infoall" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>InfoAll</name>
     <description>
-        Hello World sample application that responds to the deviceready event.
+        A test app for road sanitation testing.
     </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
+    <author email="bg1fup@163.com" href="http://www.bjhks.org">
+        BG1UFP
     </author>
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />

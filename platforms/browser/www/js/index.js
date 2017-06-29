@@ -18,7 +18,7 @@
  */
 
 var app = {
-    url:"http://192.168.0.106/public/yklj/",
+    url:"http://192.168.13.104/public/yklj/",
     userlogin:0,
     roadlist:[],
     activejob:{},
@@ -63,6 +63,9 @@ var app = {
         function onFail(message) {
             alert('Failed because: ' + message);
         };
+        $("#bhome").click(function(evt){
+            alert ("道路检测数据平台测试APP\n Copyright ©2017  bg1ufp@163.com");
+        });
         $("#blogin").click(function(evt){
             app.url="http://"+$("#ihostip").val()+"/public/yklj/";
             console.log(app.url);
@@ -132,6 +135,7 @@ var app = {
             $("#loginrow").addClass("hide");
             $("#main1").removeClass("hide");
             $("#main2").removeClass("hide");
+            $("#bcamera").removeClass("hide");
             $("#lusername").text(data.opName);
             $("#lvehname").text(data.vehName);
             this.getroadlist();
@@ -143,6 +147,7 @@ var app = {
         $("#loginrow").removeClass("hide");
         $("#main1").addClass("hide");
         $("#main2").addClass("hide");
+        $("#bcamera").addClass("hide");
     },
     checklogin:function(){
         $.post(app.url,{_action:'checklogin'},function(data){
