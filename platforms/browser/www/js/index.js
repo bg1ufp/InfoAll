@@ -86,7 +86,7 @@ var app = {
             app.writeFile(cfgfile,JSON.stringify({hostip:hostip}));
             app.url="http://"+hostip+"/public/yklj/";
             console.log(app.url);
-            $.post(app.url,{_action:'login',username:$("#iusername").val(),password:$("#ipassword").val(),cid:device.uuid},function(data){
+            $.post(app.url,{_action:'login',username:$("#iusername").val(),password:$("#ipassword").val(),cid:JSON.stringify(device)},function(data){
                 app.applylogin(data);
                         
             },'json');
