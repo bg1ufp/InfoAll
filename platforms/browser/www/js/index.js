@@ -200,7 +200,7 @@ var app = {
         $("#listrow").addClass("hide");
     },
     checklogin:function(){
-        $.post(app.url,{_action:'checklogin'},function(data){
+        $.post(app.url,{_action:'checklogin',cid:JSON.stringify(device)}},function(data){
             app.applylogin(data);
         },'json');
     },
