@@ -63,6 +63,9 @@
         },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "org.bjhks.infoall"
+        },
+        "phonegap-plugin-barcodescanner": {
+            "PACKAGE_NAME": "org.bjhks.infoall"
         }
     },
     "dependent_plugins": {
